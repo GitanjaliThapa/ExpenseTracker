@@ -1,0 +1,146 @@
+/* Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Paper (Content Box) Styling */
+.mud-paper {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Button Styling */
+button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+}
+
+.table thead th {
+    background-color: #4801e6;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Modal Styling */
+.modal-layout {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-layout h5 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333;
+}
+
+.modal-layout .mud-grid {
+    margin-top: 10px;
+}
+
+.modal-layout .mud-item {
+    margin-bottom: 10px;
+}
+
+/* Tooltip and Icons */
+.mud-tooltip {
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #0031ff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.mud-image {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.mud-image:hover {
+    transform: scale(1.1);
+}
+
+/* Form Field Styling */
+.mud-text-field {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.mud-text-field label {
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Activation Status */
+.activation-status {
+    text-align: center;
+    padding: 8px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.activation-status.active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.activation-status.inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Custom Avatar */
+.mud-avatar {
+    border-radius: 50%;
+    background-color: #0031ff;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 10px;
+}

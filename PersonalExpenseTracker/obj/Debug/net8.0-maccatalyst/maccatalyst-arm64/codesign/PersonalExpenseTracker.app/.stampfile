@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/PersonalExpenseTracker.app

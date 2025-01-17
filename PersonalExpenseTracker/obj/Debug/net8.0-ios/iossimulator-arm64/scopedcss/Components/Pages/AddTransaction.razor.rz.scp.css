@@ -1,0 +1,67 @@
+/* General Table Styling */
+.table[b-o5kbl4zkdm] {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+}
+
+/* Table Head Styling */
+.table thead th[b-o5kbl4zkdm] {
+    background-color: #0228ea; 
+    color: #ffffff; /* White text */
+    font-size: 16px; /* Font size */
+    padding: 12px 15px; /* Padding */
+    text-transform: uppercase; /* Optional: Uppercase for better readability */
+    border-bottom: 2px solid #ddd; /* Separation border */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition for hover */
+}
+
+/* Table Head Hover Effect */
+.table thead th:hover[b-o5kbl4zkdm] {
+    background-color: #e8e0e0; /* Gray on hover */
+    cursor: pointer; /* Pointer cursor to indicate interactivity */
+}
+
+/* Table Body Rows Styling */
+.table tbody tr[b-o5kbl4zkdm] {
+    border-bottom: 1px solid #ddd; /* Row borders */
+    transition: background-color 0.2s ease-in-out; /* Smooth transition for hover */
+}
+
+.table tbody tr:hover[b-o5kbl4zkdm] {
+    background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+/* Table Cell Styling */
+.table td[b-o5kbl4zkdm] {
+    padding: 12px 15px;
+    color: #333; /* Dark text for better readability */
+    vertical-align: middle; /* Center align text vertically */
+}
+
+/* Action Button Styling */
+.action[b-o5kbl4zkdm] {
+    display: flex;
+    gap: 8px; /* Spacing between action icons */
+    justify-content: center;
+    align-items: center;
+}
+
+.action img[b-o5kbl4zkdm] {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.action img:hover[b-o5kbl4zkdm] {
+    transform: scale(1.2); /* Slight zoom effect on hover */
+}
+
+/* Responsive Table */
+.table-responsive[b-o5kbl4zkdm] {
+    overflow-x: auto;
+}
+
+

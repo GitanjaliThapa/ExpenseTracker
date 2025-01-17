@@ -1,0 +1,201 @@
+@page "/dashboard"
+@using PersonalExpenseTracker.Base
+@using PersonalExpenseTracker.Components.Layout
+@using PersonalExpenseTracker.Model
+
+<MudContainer>
+    <div>
+        <MudGrid>
+            <MudItem xs="12" sm="4" md="3">
+                <NavMenu />
+            </MudItem>
+            <MudItem xs="12" sm="8" md="9">
+                <MudCard>
+                    <MudCardContent>
+                        <div style="text-align: center; background-color: #31018e; padding: 20px;">
+                            <h1 style="font-family: Arial, sans-serif; color: white;"> Dashboard</h1>
+                        </div>
+                        <br />
+
+                        <MudGrid Class="mb-4">
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudDatePicker Label="From Date" @bind-Date="filterFromDate" Variant="Variant.Outlined" />
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudDatePicker Label="To Date" @bind-Date="filterToDate" Variant="Variant.Outlined" />
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4" Class="d-flex align-center">
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ApplyDateFilter" Style="margin-right: 8px;">
+                                    Apply Filters
+                                </MudButton>
+                                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="ResetDateFilter">
+                                    Clear Filters
+                                </MudButton>
+                            </MudItem>
+                        </MudGrid>
+                        <MudGrid Class="mb-4">
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #ffdacc;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Total Transactions</MudText>
+                                    <MudText Typo="Typo.subtitle1">@totalTransactions</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #dee4ff;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Total Amount</MudText>
+                                    <MudText Typo="Typo.subtitle1">@totalAmount.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #d7ffdf;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Inflows</MudText>
+                                    <MudText Typo="Typo.subtitle1">@totalInflows.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #fbe9ce;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Outflows</MudText>
+                                    <MudText Typo="Typo.subtitle1">@totalOutflows.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #dad1ff;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Debt</MudText>
+                                    <MudText Typo="Typo.subtitle1">@totalDebt.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #ffd7e7;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Remaining Debt</MudText>
+                                    <MudText Typo="Typo.subtitle1">@remainingDebt.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #fbd2f4;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Highest Inflow</MudText>
+                                    <MudText Typo="Typo.subtitle1">@highestInflow.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #c9d9ff;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Highest Outflow</MudText>
+                                    <MudText Typo="Typo.subtitle1">@highestOutflow.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6" md="4">
+                                <MudPaper Class="p-2" Style="background-color: #efffdc;">
+                                    <MudText Typo="Typo.h6" GutterBottom>Highest Debt</MudText>
+                                    <MudText Typo="Typo.subtitle1">@highestDebt.ToString("C")</MudText>
+                                </MudPaper>
+                            </MudItem>
+                        </MudGrid>
+
+
+                        <div style="background-color: #05a605; padding: 10px 20px; border-radius: 5px; display: inline-block; text-align: center; font-weight: bold; color: white; cursor: pointer;">
+                            <MudText Typo="Typo.h6" Align="Align.Center">Current Balance: @CurrentBalance.ToString("C")</MudText>
+                        </div>
+
+                        <MudGrid>
+                            <MudItem xs="12" sm="6">
+                                <MudPaper Class="pa-4" Style="background-color: #f5f3ff;">
+                                    <PieChart T="Transaction" Items="transactions" XValue="@(e => e.Title)" YValue="@(e => e.TransactionAmount)" />
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                @if (transactions == null)
+                                {
+                                    <Loader />
+                                }
+                                else
+                                {
+                                    <MudPaper Class="p-4" Style="background-color: #e8eeff;">
+                                        <MudText Typo="Typo.h5" GutterBottom Style="background-color: #0000e3; color: white;">
+                                            Top 5 Highest Transactions
+                                        </MudText>
+                                        <div class="table-responsive">
+                                            <table class="table country-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.N</th>
+                                                        <th>Title</th>
+                                                        <th>Date</th>
+                                                        <th>Transaction Amount</th>
+                                                        <th>Transaction Type</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in highestTransactions)
+                                                    {
+                                                        <tr>
+                                                            <td>@(transactions.IndexOf(item) + 1).</td>
+                                                            <td>@item.Title</td>
+                                                            <td>@item.TransactionDate</td>
+                                                            <td>@item.TransactionAmount.ToString("C")</td>
+                                                            <td>@Enum.GetName(typeof(TransactionType), item.TransactionType)</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </MudPaper>
+                                }
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                <MudPaper Style="background-color: #e5fbf9;">
+                                    <BarChart T="Debt" Items="@RemainingDebt"
+                                              IsHorizontallyAligned="false"
+                                              Height="450"
+                                              Width="650"
+                                              Title="Remaining Debts"
+                                              MaxYValue="5"
+                                              ShowLegend="false"
+                                              XValue="@(e => $"{e.DebtSource}")"
+                                              YValue="@(e => e.Sum(z => (decimal)z.DebtAmount))" />
+                                </MudPaper>
+                            </MudItem>
+                            <MudItem xs="12" sm="6">
+                                @if (RemainingDebt == null)
+                                {
+                                    <Loader />
+                                }
+                                else
+                                {
+                                    <MudPaper Class="p-4" Style="background-color: #fdecec;">
+                                        <MudText Typo="Typo.h5" GutterBottom Style="background-color: #ea0404; color: white; ">
+                                            Top 5 Pending Debts
+                                        </MudText>
+                                        <div class="table-responsive">
+                                            <table class="table country-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.N</th>
+                                                        <th>Debt Source</th>
+                                                        <th>Debt Amount</th>
+                                                        <th>Debt Date</th>
+                                                        <th>Due Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in RemainingDebt)
+                                                    {
+                                                        <tr>
+                                                            <td>@(RemainingDebt.IndexOf(item) + 1).</td>
+                                                            <td>@item.DebtSource</td>
+                                                            <td>@item.DebtAmount.ToString("C")</td>
+                                                            <td>@item.DebtDate</td>
+                                                            <td>@item.DueDate</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </MudPaper>
+                                }
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </div>
+</MudContainer>

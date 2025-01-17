@@ -1,11 +1,13 @@
-﻿namespace PersonalExpenseTracker;
-
-public partial class App : Application
+﻿
+namespace PersonalExpenseTracker
 {
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
+        public App()
+        {
+            InitializeComponent();
 
-        MainPage = new MainPage();
+            MainPage = new MainPage();
+        }
     }
 }

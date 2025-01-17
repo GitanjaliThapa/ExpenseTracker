@@ -1,0 +1,208 @@
+@page "/debt"
+@using PersonalExpenseTracker.Components.Dialog
+@using PersonalExpenseTracker.Components.Layout
+@using PersonalExpenseTracker.Model
+@using PersonalExpenseTracker.Model.Constants
+
+@if (debts == null)
+{
+    <Loader />
+}
+else
+{
+    <Back />
+    <MudPaper Class="p-4">
+        <MudText Typo="Typo.h5" GutterBottom>Manage Debts</MudText>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" DropShadow="false" class="btn btn--md" OnClick="OpenDebtRegister" Disabled="IsCreateModalOpen" ButtonType="ButtonType.Submit">Add Debt</MudButton>
+
+        <div class="table-responsive">
+            <table class="table country-table">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th>SourceOfDebt</th>
+                        <th>DebtAmount</th>
+                        <th>DeuDate</th>
+                        <th>Tag</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in debts)
+                    {
+                        <tr>
+                            <td>@(debts.IndexOf(item) + 1).</td>
+                            <td>@item.DebtSource</td>
+                            <td>@item.DebtAmount.ToString("C")</td>
+                            <td>@item.DueDate</td>
+                            <td>@item.Tag?.TagName</td>
+                            <td>
+                                @(item.IsCleard ? "Paid" : "Pending")
+                            </td>
+                            <td>
+                                <div class="action">
+                                    @* <MudTooltip Text="Edit" Color="Color.Primary" Arrow="true">
+                            <MudImage Src="images/icons/edit.svg" Alt="Edit Icon" Height="18" Width="18" @onclick="() => OpenUpdateModal(item.Id)" />
+                            </MudTooltip> *@
+                                    @if (!item.IsCleard)
+                                    {
+                                        <MudTooltip Text="@(item.IsCleard ? "Mark as Unpaid" : "Repay Debt")" Color="Color.Primary" Arrow="true">
+                                            <MudButton Src="@(item.IsCleard ? "images/icons/unpaid.svg" : "images/icons/repay.svg")"
+                                                       Alt="Repay Debt"
+                                                       Height="18"
+                                                       Width="18"
+                                                       @onclick="() => OpenRepayDebtModal(item.Id)">Repay</MudButton>
+                                        </MudTooltip>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                    <MudTooltip Text="@(item.IsActive ? "Deactive" : "Active")" Color="Color.Primary" Arrow="true">
+                                        <MudImage Src="@(item.IsActive ? "images/icons/document.svg" : "images/icons/delete.svg")" Alt="Status Icon" Height="18" Width="18" @onclick="() => OpenDebtDeleteModal(item.Id)" />
+                                    </MudTooltip>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </MudPaper>
+}
+
+@if (IsCreateModalOpen)
+{
+    <ModalLayout Module="Debt"
+                 Title="Add Debts"
+                 Description="Add a new Debts"
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="AddRegisterDebt"
+                 CancelLabel="Discard"
+                 SubmitLabel="Save"
+                 IsVisible="@IsCreateModalOpen"
+                 IsVisibleChanged="@((bool value) => IsCreateModalOpen = value)">
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField Label="Debt Source" @bind-Value="CreateDebtDto.DebtSource" Required="true" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField Label="Debt Amount" @bind-Value="CreateDebtDto.DebtAmount" Required="true" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudSelect T="Guid" Label="Select a Tag" @bind-Value="CreateDebtDto.TagId" Variant="Variant.Outlined">
+                    @if (Tags != null)
+                    {
+                        @foreach (var tag in Tags)
+                        {
+
+                            <MudSelectItem T="Guid" Value="tag.Id">@tag.TagName</MudSelectItem>
+
+                        }
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12">
+                <MudDatePicker Label="Debt Date"
+                               @bind-Date="CreateDebtDto.DueDate"
+                               Placeholder="Select the debt date"
+                               Variant="Variant.Outlined"
+                               PickerVariant="PickerVariant.Dialog"
+                               DateFormat="dd.MM.yyyy" />
+            </MudItem>
+        </MudGrid>
+    </ModalLayout>
+}
+
+@if (IsDeleteModalOpen)
+{
+    <ModalLayout Module="Tag"
+                 Title="Delete Tag"
+                 Description="Are you sure you want to delete this tag?"
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="@DeleteTag"
+                 CancelLabel="Discard"
+                 SubmitLabel="@(DeleteDebt.IsActive ? "Deactivate" : "Activate")"
+                 IsVisible="@IsDeleteModalOpen"
+                 IsVisibleChanged="@((bool value) => IsDeleteModalOpen = value)">
+        <div class="text-center">
+            <LoadIcon Height="200"
+                      Width="200"
+                      Icon="@(DeleteDebt.IsActive ? Animations.Regular.Trash : Animations.Regular.Edit)"
+                      State="hover-pinch"
+                      Trigger="loop" />
+            <MudText Class="hfs4 data fw-600">
+                Are you sure you want to @(DeleteDebt.IsActive ? "deactivate" : "activate") the following Tag?
+            </MudText>
+        </div>
+    </ModalLayout>
+}
+
+@if (IsUpdateModalOpen)
+{
+    <ModalLayout Module="Debts"
+                 Title="Update Debts"
+                 Description="Update an existing Debt to the system, by filling in the following form."
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="@UpdateTag"
+                 IsVisible="@IsUpdateModalOpen"
+                 CancelLabel="Discard"
+                 SubmitLabel="Submit" IsVisibleChanged="@((bool value) => IsUpdateModalOpen = value)">
+        <MudGrid class="mt-n4" Spacing=8>
+            <MudItem xs=12>
+                <MudTextField @bind-Value="UpdateDebtDto.DebtSource" Label="Debt Source" For="@(() => UpdateDebtDto.DebtSource)" Variant="Variant.Outlined" Placeholder="Enter the Debt Source " Immediate="true" />
+            </MudItem>
+            <MudItem xs=12>
+                <MudTextField @bind-Value="UpdateDebtDto.DebtAmount" Label="Debt DebtAmout" For="@(() => UpdateDebtDto.DebtAmount)" Variant="Variant.Outlined" Placeholder="Enter the Debt Amout " Immediate="true" />
+            </MudItem>
+            <MudItem xs=12>
+                <MudDatePicker @bind-Date="UpdateDebtDto.DueDate" Label="Debt Date" For="@(() => UpdateDebtDto.DebtDate)" Variant="Variant.Outlined" Placeholder="Enter the Debt Date " Immediate="true" />
+            </MudItem>
+        </MudGrid>
+    </ModalLayout>
+}
+
+@if (IsDebtRepayModalOpen)
+{
+    <ModalLayout Module="Debts"
+                 Title="Repay Debt"
+                 Description="Pay an existing Debt to the system, by filling in the following form."
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="@RepayDebt"
+                 IsVisible="@IsDebtRepayModalOpen"
+                 CancelLabel="Discard"
+                 SubmitLabel="Repay" IsVisibleChanged="@((bool value) => IsDebtRepayModalOpen = value)">
+        <MudGrid class="mt-n4" Spacing=8>
+            <MudItem xs="12">
+                <MudTextField Disabled="true"
+                              @bind-Value="RepayDebtDto.DebtSource"
+                              Label="Debt Source"
+                              Variant="Variant.Outlined"
+                              Placeholder="Enter the Debt Source" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField Disabled="true"
+                              @bind-Value="RepayDebtDto.DebtAmount"
+                              Label="Debt Amount"
+                              Variant="Variant.Outlined"
+                              Placeholder="Enter the Debt Amount" />
+            </MudItem>
+            @if (isError)
+            {
+                <MudText Typo="Typo.caption" Color="Color.Error">Transaction amount is not sufficient!</MudText>
+            }
+            <MudItem xs="12">
+                <MudTextField Disabled="true"
+                              @bind-Value="RepayDebtDto.DebtDate"
+                              Label="Debt Date"
+                              Variant="Variant.Outlined"
+                              Placeholder="Enter the Debt Date" />
+            </MudItem>
+        </MudGrid>
+    </ModalLayout>
+}

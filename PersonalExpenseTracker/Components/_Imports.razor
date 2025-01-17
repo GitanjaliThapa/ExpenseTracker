@@ -7,3 +7,22 @@
 @using Microsoft.JSInterop
 @using PersonalExpenseTracker
 @using PersonalExpenseTracker.Components
+@using PersonalExpenseTracker.Services.Interface
+@using MudBlazor
+
+
+@*Interface Userservice inject*@
+@inject IUser UserService
+@inject ITag UserTag
+@inject IDebt UserDebt
+@inject ITransaction UserTransaction
+@*@inject ISnackbarService SnackbarService*@
+
+@inject IJSRuntime JsRuntime
+
+@inject NavigationManager Nav
+
+@*Import Color *@
+@using Color = MudBlazor.Color
+@using Align = MudBlazor.Align
+@using Size = MudBlazor.Size

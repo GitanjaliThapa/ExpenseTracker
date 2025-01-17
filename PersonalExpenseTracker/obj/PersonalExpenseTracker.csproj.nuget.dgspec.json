@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj": {}
+    "/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj": {}
   },
   "projects": {
-    "/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj": {
+    "/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj",
+        "projectUniqueName": "/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj",
         "projectName": "PersonalExpenseTracker",
-        "projectPath": "/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj",
+        "projectPath": "/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/PersonalExpenseTracker.csproj",
         "packagesPath": "/Users/gitanjalithapa/.nuget/packages/",
-        "outputPath": "/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/obj/",
+        "outputPath": "/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/obj/",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
@@ -54,9 +54,33 @@
         "net8.0-android34.0": {
           "targetAlias": "net8.0-android",
           "dependencies": {
+            "Blazor-ApexCharts": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Blazored.Toast": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "Blazorise": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Bootstrap": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.83, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -75,6 +99,10 @@
               "target": "Package",
               "version": "[8.0.11, )",
               "autoReferenced": true
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[7.15.0, )"
             }
           },
           "imports": [
@@ -101,9 +129,33 @@
         "net8.0-ios18.0": {
           "targetAlias": "net8.0-ios",
           "dependencies": {
+            "Blazor-ApexCharts": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Blazored.Toast": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "Blazorise": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Bootstrap": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.83, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -122,6 +174,10 @@
               "target": "Package",
               "version": "[8.0.11, )",
               "autoReferenced": true
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[7.15.0, )"
             }
           },
           "imports": [
@@ -148,9 +204,33 @@
         "net8.0-maccatalyst18.0": {
           "targetAlias": "net8.0-maccatalyst",
           "dependencies": {
+            "Blazor-ApexCharts": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Blazored.Toast": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "Blazorise": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Bootstrap": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "Microsoft.AspNetCore.Components.WebView.Maui": {
               "target": "Package",
               "version": "[8.0.83, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
@@ -169,6 +249,10 @@
               "target": "Package",
               "version": "[8.0.11, )",
               "autoReferenced": true
+            },
+            "MudBlazor": {
+              "target": "Package",
+              "version": "[7.15.0, )"
             }
           },
           "imports": [

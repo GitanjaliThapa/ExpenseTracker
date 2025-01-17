@@ -1,0 +1,152 @@
+/* General Page Styling */
+body[b-7l7g59sr8g] {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+table[b-7l7g59sr8g] {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th[b-7l7g59sr8g] {
+    background-color: #0031ff;
+    color: #fff;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+tbody td[b-7l7g59sr8g] {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+tbody tr:hover[b-7l7g59sr8g] {
+    background-color: #f1f1f1;
+}
+
+.table-responsive[b-7l7g59sr8g] {
+    overflow-x: auto;
+}
+
+/* Buttons */
+.btn[b-7l7g59sr8g] {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn--md[b-7l7g59sr8g] {
+    background-color: #1E90FF !important;
+    color: white !important;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn--md:hover[b-7l7g59sr8g] {
+    background-color: #0066cc !important;
+}
+
+/* Table Actions */
+.action[b-7l7g59sr8g] {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action img[b-7l7g59sr8g] {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.action img:hover[b-7l7g59sr8g] {
+    transform: scale(1.1);
+}
+
+/* Modals */
+.modal-lg[b-7l7g59sr8g] {
+    width: 70%;
+    margin: auto;
+}
+
+.ModalLayout[b-7l7g59sr8g] {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ModalLayout .text-center[b-7l7g59sr8g] {
+    text-align: center;
+}
+
+.ModalLayout .hfs4[b-7l7g59sr8g] {
+    font-size: 1.25rem;
+    margin-top: 20px;
+}
+
+/* Inputs */
+.mud-input[b-7l7g59sr8g] {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 14px;
+    transition: border 0.3s;
+}
+
+.mud-input:focus[b-7l7g59sr8g] {
+    border: 1px solid #1E90FF;
+    outline: none;
+}
+
+/* Date Picker */
+.mud-datepicker[b-7l7g59sr8g] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.mud-datepicker:focus[b-7l7g59sr8g] {
+    border-color: #1E90FF;
+}
+
+/* Tooltip */
+.mud-tooltip[b-7l7g59sr8g] {
+    background-color: #1E90FF;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modal-lg[b-7l7g59sr8g] {
+        width: 90%;
+    }
+
+    .btn--md[b-7l7g59sr8g] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    table[b-7l7g59sr8g] {
+        font-size: 14px;
+    }
+
+    .action[b-7l7g59sr8g] {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

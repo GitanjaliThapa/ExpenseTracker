@@ -1,0 +1,13 @@
+@using ApexCharts
+@typeparam T
+
+<div class="text-center">
+    <ApexChart TItem="T" Height="400" Options="PieChartOptions">
+        <ApexPointSeries TItem="T"
+                         Items="Items"
+                         SeriesType="SeriesType.Pie"
+                         Name="Data Series"
+                         XValue="XValue"
+                         YValue="YValue" />
+    </ApexChart>
+</div>

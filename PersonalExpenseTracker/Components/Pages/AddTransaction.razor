@@ -1,0 +1,245 @@
+@page "/transaction"
+@using PersonalExpenseTracker.Base
+@using PersonalExpenseTracker.Components.Dialog
+@using PersonalExpenseTracker.Components.Layout
+@using PersonalExpenseTracker.Model.Constants
+
+@if(transactions == null)
+{
+    <Loader/>
+}
+else
+{
+    <Back/>
+    <MudPaper Class="p-4">
+        <MudText Typo="Typo.h5" GutterBottom>Manage Transaction</MudText>
+        <MudButton
+            Variant="Variant.Filled"
+            Color="Color.Primary"
+            DropShadow="false"
+            OnClick="@(() => OpenTransactionRegister(true))"
+            Disabled="IsCreateModalOpen"
+            ButtonType="ButtonType.Submit"
+            style="font-weight: bold;">
+            Credit
+        </MudButton>
+
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   DropShadow="false"
+                   OnClick="@(() => OpenTransactionRegister())"
+                   Disabled="IsCreateModalOpen"
+                   ButtonType="ButtonType.Submit"
+                   style="font-weight: bold;">
+            Debit
+        </MudButton>
+
+        <MudGrid Class="mt-4" Spacing="2">
+            <MudItem xs="12" sm="6" md="4">
+                <MudDatePicker Label="From Date" @bind-Date="filterFromDate" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12" sm="6" md="4">
+                <MudDatePicker Label="To Date" @bind-Date="filterToDate" Variant="Variant.Outlined" />
+            </MudItem>
+
+            <!-- Tag Dropdown -->
+            <MudItem xs="12" sm="6" md="4">
+                <MudSelect T="Guid" Label="Select Tag" @bind-Value="selectedTagId" Variant="Variant.Outlined">
+                    <MudSelectItem T="Guid" Value="default(Guid)">All Tags</MudSelectItem>
+                    @if (Tags != null)
+                    {
+                        @foreach (var tag in Tags)
+                        {
+                            <MudSelectItem T="Guid" Value="tag.Id">@tag.TagName</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </MudItem>
+        </MudGrid>
+
+        <!-- Search Bar and Filter Buttons -->
+        <MudGrid Class="mt-2">
+            <MudItem xs="12" sm="8">
+                <MudTextField Label="Search Title or Remark" @bind-Value="searchText" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12" sm="4" Class="d-flex align-center">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ApplyFilters" Disabled="IsCreateModalOpen" Style="margin-right: 8px;">
+                    Apply Filters
+                </MudButton>
+                <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="ResetFilters">
+                    Clear Filters
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+
+        <div class="table-responsive">
+            <table class="table country-table">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th>Title</th>
+                        <th>Transaction Amount</th>
+                        <th>Transaction Type</th>
+                        <th>
+                            <button @onclick="SortByDate" class="btn btn-link p-0 text-decoration-none">
+                                Date
+                                @if (isDateAscending)
+                                {
+                                    <span>&uarr;</span>
+                                }
+                                else
+                                {
+                                    <span>&darr;</span>
+                                }
+                            </button>
+                        </th>
+                        <th>Tag</th>
+                        <th>Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in filteredTransactions ?? transactions)
+                    {
+                        <tr>
+                            <td>@(transactions.IndexOf(item) + 1).</td>
+                            <td>@item.Title</td>
+                            <td>@item.TransactionAmount.ToString("C")</td>
+                            <td>@Enum.GetName(typeof(TransactionType),item.TransactionType)</td>
+                            <td>@item.TransactionDate</td>
+                            <td>@(Tags?.Where(_ => _.Id == item.TagId).Select(_ => _.TagName).FirstOrDefault()?.ToString())</td>
+                            <td>@item.Remarks</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </MudPaper>
+}
+
+@if (IsCreateModalOpen)
+{
+    <MudSnackbarProvider />
+
+    <ModalLayout Module="Transaction"
+                 Title="@ModalTitle"
+                 Description="@ModalDescription"
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="AddRegisterTransaction"
+                 CancelLabel="Discard"
+                 SubmitLabel="Save"
+                 IsVisible="@IsCreateModalOpen"
+                 IsVisibleChanged="@((bool value) => IsCreateModalOpen = value)">
+        <MudGrid>
+            <MudItem xs="12">
+                <MudTextField Label="Title" @bind-Value="createTransaction.Title" Required="true" Variant="Variant.Outlined" />
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField Label="Transaction Amount" @bind-Value="createTransaction.TransactionAmount" Required="true" Variant="Variant.Outlined" />
+                @if (isError)
+                {
+                    <MudText Typo="Typo.caption" Color="Color.Error">Transaction amount is not sufficient</MudText>
+                }
+            </MudItem>
+            @if (IsCredit)
+            {
+                <MudItem xs="12">
+                    <MudText Label="This transaction will be credited to your account." />
+                </MudItem>
+            }
+            else
+            {
+                <MudItem xs="12">
+                    <MudText Label="This transaction will be debited from your account." />
+                </MudItem>
+            }
+            <MudItem xs="12">
+                <MudSelect T="Guid" Label="Select a Tag" @bind-Value="createTransaction.TagId" Variant="Variant.Outlined">
+                    @if (Tags != null)
+                    {
+                        @foreach (var tag in Tags)
+                        {
+                            <MudSelectItem T="Guid" Value="tag.Id">@tag.TagName</MudSelectItem>
+                        }
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12">
+                <MudTextField Label="Remark" @bind-Value="createTransaction.Remarks" Variant="Variant.Outlined" />
+            </MudItem>
+
+
+
+        </MudGrid>
+    </ModalLayout>
+}
+
+@if (IsDeleteModalOpen)
+{
+    <ModalLayout Module="Transaction"
+                 Title="Delete Transaction"
+                 Description="Are you sure you want to delete this Transaction?"
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="@(() => DeleteTrans(!DeleteTransaction.IsActive))"
+                 CancelLabel="Discard"
+                 SubmitLabel="@(DeleteTransaction.IsActive ? "Deactivate" : "Activate")"            
+                 IsVisible="@IsDeleteModalOpen"
+                 IsVisibleChanged="@((bool value) => IsDeleteModalOpen = value)">
+        <div class="text-center">
+            <LoadIcon Height="200"
+                      Width="200"
+                      Icon="@(DeleteTransaction.IsActive ? Animations.Regular.Trash : Animations.Regular.Edit)"
+                      State="hover-pinch"
+                      Trigger="loop" />
+            <MudText Class="hfs4 data fw-600">
+                Are you sure you want to @(DeleteTransaction.IsActive ? "deactivate" : "activate") the following Transaction?
+            </MudText>
+        </div>
+    </ModalLayout>
+}
+
+@code {
+    private DateTime? filterFromDate;
+    private DateTime? filterToDate;
+    private Guid selectedTagId = default(Guid);
+    private string searchText = string.Empty;
+    private List<Model.Transaction> filteredTransactions = new();
+
+    private void ApplyFilters()
+    {
+        filteredTransactions = transactions
+            .Where(t => (!filterFromDate.HasValue || t.TransactionDate >= filterFromDate.Value) &&
+                        (!filterToDate.HasValue || t.TransactionDate <= filterToDate.Value) &&
+                        (selectedTagId == default(Guid) || t.TagId == selectedTagId) &&
+                        (string.IsNullOrWhiteSpace(searchText) ||
+                         t.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                         t.Remarks.Contains(searchText, StringComparison.OrdinalIgnoreCase)))
+            .ToList();
+    }
+
+    private void ResetFilters()
+    {
+        filterFromDate = null;
+        filterToDate = null;
+        selectedTagId = default(Guid);
+        searchText = string.Empty;
+        filteredTransactions = transactions;
+    }
+
+    private bool isDateAscending = true; 
+
+    private void SortByDate()
+    {
+        if (isDateAscending)
+        {
+            filteredTransactions = (filteredTransactions ?? transactions).OrderBy(t => t.TransactionDate).ToList();
+        }
+        else
+        {
+            filteredTransactions = (filteredTransactions ?? transactions).OrderByDescending(t => t.TransactionDate).ToList();
+        }
+
+        isDateAscending = !isDateAscending;
+    }
+}

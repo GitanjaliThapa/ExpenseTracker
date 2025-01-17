@@ -1,0 +1,82 @@
+.form-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e0e0e0;
+    padding: 1rem; /* Added padding for better responsiveness */
+}
+
+form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px; /* Increased container width */
+}
+
+form h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem; /* Made font smaller */
+    font-weight: bold;
+    color: #000000;
+    line-height: 1.4; /* Adjusted line height */
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #333333; /* Slightly darker label text */
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.3);
+}
+
+form select {
+    cursor: pointer;
+    appearance: none; /* Removes native styling for a uniform look */
+}
+
+form button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff; /* Changed button color to blue */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.02); /* Slight hover effect */
+}
+
+form .error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}

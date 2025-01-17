@@ -1,0 +1,41 @@
+@page "/login"
+@using PersonalExpenseTracker.Model
+@using PersonalExpenseTracker.Base
+
+<div class="form-login">
+    <form class="text-center" @onsubmit="HandleLogin">
+        <MudCard Class="p-4 text-center" >
+            <MudText Typo="Typo.h3" GutterBottom Style="font-size: 1.8em; color: #8B4513; font-weight: bold;">
+                <span style="color: blue;">Welcome to </span>  <br /> Personal Expense Tracker
+            </MudText>
+
+            <div>
+                <MudText Typo="Typo.subtitle1" Style="font-weight: bold; text-align: left;">Username</MudText>
+                <MudTextField @bind-Value="Users.UserName" Label="Username" Variant="Variant.Filled" Required="true" />
+            </div>
+            <div class="mt-2">
+                <MudText Typo="Typo.subtitle1" Style="font-weight: bold; text-align: left;">Password</MudText>
+                <MudTextField @bind-Value="Users.Password" Label="Password" Variant="Variant.Filled" InputType="InputType.Password" Required="true" />
+            </div>
+            <div class="mt-2">
+                <MudText Typo="Typo.subtitle1" Style="font-weight: bold; text-align: left;">Currency</MudText>
+                <MudSelect T="Currency" Label="Select Currency" @bind-Value="Users.Currency" Variant="Variant.Filled" Required="true">
+                    @foreach (Currency currency in Enum.GetValues(typeof(Currency)))
+                    {
+                        <MudSelectItem T="Currency" Value="currency">@currency</MudSelectItem>
+                    }
+                </MudSelect>
+            </div>
+            <br />
+            <br />
+            @if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                <MudAlert Severity="Severity.Error" Elevation="0">@ErrorMessage</MudAlert>
+            }
+
+            <MudButton Variant="Variant.Filled" Style="background-color: #1976D2; color: white;" ButtonType="ButtonType.Submit">
+                Login
+            </MudButton>
+        </MudCard>
+    </form>
+</div>

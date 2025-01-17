@@ -1,0 +1,130 @@
+@page "/custom-tag"
+@using PersonalExpenseTracker.Components.Dialog
+@using PersonalExpenseTracker.Components.Layout
+@using PersonalExpenseTracker.Model
+@using PersonalExpenseTracker.Model.Constants
+
+
+@if(Tags == null)
+{
+    <Loader/>
+}
+else
+{
+    <Back/>
+    <MudPaper Class="p-4">
+        <MudButton Variant="Variant.Filled"
+                   DropShadow="false"
+                   OnClick="OpenTagRegister"
+                   Disabled="IsCreateModalOpen"
+                   ButtonType="ButtonType.Submit"
+                   Style="background-color: #1E90FF !important; color: white !important; border-radius: 50px !important; padding: 12px 24px !important; font-size: 16px !important;">Add Tag</MudButton>
+
+        <div class="table-responsive">
+            <table class="table country-table">
+                <thead>
+                    <tr>
+                        <th>S.N</th>
+                        <th>TagName</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Tags)
+                    {
+                        <tr>
+                            <td>@(Tags.IndexOf(item) + 1).</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    @item.TagName
+                                </div>
+                            </td>
+                            <td>
+                                <ActivationStatus IsActive="@item.IsActive" />
+                            </td>
+                            <td>
+                                <div class="action">
+                                    <MudTooltip Text="Edit" Color="Color.Primary" Arrow="true">
+                                        <MudImage Src="images/icons/edit.svg" Alt="Edit Icon" Height="18" Width="18" @onclick="() => OpenUpdateModal(item.Id)" />
+                                    </MudTooltip>
+                                    <MudTooltip Text="@(item.IsActive ? "Deactivate" : "Activate")" Color="Color.Primary" Arrow="true">
+                                        <MudImage Src="@(item.IsActive ? "images/icons/delete.svg" : "images/icons/document.svg")" Alt="Bin Icon" Height="18" Width="18" @onclick="() => OpenTagDeleteModal(item.Id)" />
+                                    </MudTooltip>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </MudPaper>
+}
+
+@if (IsCreateModalOpen)
+{
+    <ModalLayout Module="Tags"
+                 Title="Custom Tag"
+                 Description="Add a new custom tag."
+                 SubmitColor="Color.Primary"
+                 Size="modal-lg"
+                 OnSave="AddRegisterTag"
+                 CancelLabel="Discard"
+                 SubmitLabel="Save"
+                 IsVisible="@IsCreateModalOpen"
+                 IsVisibleChanged="@((bool value) => IsCreateModalOpen = value)">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField Label="Tag Name" 
+                        @bind-Value="createTagDto.TagName"
+                        Required="true" 
+                        Variant="Variant.Outlined"/>
+                </MudItem>
+            </MudGrid>
+     </ModalLayout>
+}
+
+@if (IsDeleteModalOpen)
+{
+    <ModalLayout Module="Tag"
+                    Title="Delete Tag" 
+                    Description="Are you sure you want to delete this tag?"
+                    SubmitColor="Color.Primary"
+                    Size="modal-lg"
+                     OnSave="@(() => DeleteTag(!DeleteTags.IsActive))"
+                    CancelLabel="Discard"
+                    SubmitLabel="@(DeleteTags.IsActive ? "Deactivate" : "Activate")"
+                    IsVisible="@IsDeleteModalOpen"
+                    IsVisibleChanged="@((bool value) => IsDeleteModalOpen = value)">
+        <div class="text-center">
+            <LoadIcon Height="200"
+                        Width="200"
+                        Icon="@(DeleteTags.IsActive ? Animations.Regular.Trash : Animations.Regular.Edit)"
+                        State="hover-pinch"
+                        Trigger="loop" />
+            <MudText Class="hfs4 data fw-600">
+                Are you sure you want to @(DeleteTags.IsActive ? "deactivate" : "activate") the following Tag?
+            </MudText>
+        </div>
+    </ModalLayout>
+}
+
+@if(IsUpdateModalOpen)
+{
+    <ModalLayout Module="Tag"
+                    Title="Update Tag"
+                    Description="Update an existing Tag to the system, by filling in the following form."
+                    SubmitColor="Color.Primary"
+                    Size="modal-lg"
+                    OnSave="@UpdateTag"
+                    IsVisible="true"
+                    CancelLabel="Discard"
+                    SubmitLabel="Submit">
+        <MudGrid class="mt-n4" Spacing=8>
+            <MudItem xs=12>
+                <MudTextField @bind-Value="UpdateTagDto.TagName" Label="Name" For="@(() => UpdateTagDto.TagName)" Variant="Variant.Outlined" Placeholder="Enter the Custome Tag Name " Immediate="true"/>
+            </MudItem>
+        </MudGrid>
+    </ModalLayout>
+}
+

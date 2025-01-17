@@ -3,6 +3,9 @@ build_property.EnableAotAnalyzer =
 build_property.EnableSingleFileAnalyzer = 
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudIllegalParameters = 
 build_property.TargetFramework = net8.0-maccatalyst
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -13,74 +16,144 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PersonalExpenseTracker
 build_property.RootNamespace = PersonalExpenseTracker
-build_property.ProjectDir = /Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/
+build_property.ProjectDir = /Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker
+build_property.MSBuildProjectDirectory = /Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/App.xaml]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PersonalExpenseTracker.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/MainPage.xaml]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = PersonalExpenseTracker.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Counter.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Dialog/ModalLayout.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9EaWFsb2cvTW9kYWxMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Home.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/ActivationStatus.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvQWN0aXZhdGlvblN0YXR1cy5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Weather.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/Back.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvQmFjay5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Routes.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/BarChart.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvQmFyQ2hhcnQucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/Loader.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTG9hZGVyLnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/LoadIcon.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTG9hZEljb24ucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/PieChart.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvUGllQ2hhcnQucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9EYXNoYm9hcmQucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Index.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9JbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Routes.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/_Imports.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/_Imports.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/MainLayout.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = b-lsakagrz9n
 
-[/Users/gitanjalithapa/RiderProjects/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/NavMenu.razor]
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.GenKind = 
 build_metadata.AdditionalFiles.ManifestResourceName = 
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.RelativePath = 
 build_metadata.AdditionalFiles.CssScope = b-l9hej0ne5u
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/AddDebt.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BZGREZWJ0LnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = b-7l7g59sr8g
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/AddTransaction.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BZGRUcmFuc2FjdGlvbi5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = b-o5kbl4zkdm
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/CustomTag.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DdXN0b21UYWcucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = b-o319nvypmy
+
+[/Users/gitanjalithapa/Downloads/PersonalExpenseTracker/PersonalExpenseTracker/Components/Pages/Login.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dpbi5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = b-n1bvzpc5a2
